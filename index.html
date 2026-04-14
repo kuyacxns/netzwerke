@@ -176,6 +176,10 @@ tr:last-child td{border-bottom:none;}
     <div class="nav-item active" onclick="show('home')">Alle Begriffe</div>
   </div>
   <div class="nav-group">
+    <div class="nav-group-label">Grundlagen</div>
+    <div class="nav-item" onclick="show('osi')">OSI-Modell</div>
+  </div>
+  <div class="nav-group">
     <div class="nav-group-label">Adressen & Netze</div>
     <div class="nav-item" onclick="show('ip')">IP-Adresse</div>
     <div class="nav-item" onclick="show('subnet')">Subnetzmaske</div>
@@ -799,6 +803,194 @@ def berechne_subnetz(ip_eingabe, maske):
   </div>
 </div>
 
+
+<!-- OSI-MODELL -->
+<div id="page-osi" class="page">
+  <div class="page-title">OSI-Modell</div>
+  <div class="page-subtitle">Open Systems Interconnection – 7-Schichten-Modell</div>
+  <div class="analogy">Wie das Verschicken eines Briefes: Du schreibst den Inhalt (Schicht 7), packst ihn in einen Umschlag und adressierst ihn (Schichten 6–3), und schliesslich trägt ihn der Briefträger auf der physischen Strasse aus (Schicht 1).</div>
+
+  <p>Das OSI-Modell unterteilt die gesamte Netzwerkkommunikation in <strong>7 Schichten</strong>. Jede Schicht hat eine klar definierte Aufgabe und nutzt nur die Dienste der Schicht direkt darunter. So lässt sich gezielt benennen, auf welcher Ebene ein Problem liegt.</p>
+
+  <!-- ── LAYER STACK ── -->
+  <div class="card" style="padding:12px 14px;margin-bottom:12px;">
+    <div class="label" style="margin-bottom:10px;">Die 7 Schichten (7 = Software &darr;&uarr; 1 = Hardware)</div>
+    <div style="display:flex;flex-direction:column;gap:3px;font-size:13px;">
+
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;font-weight:500;padding:2px 0 4px;">Anwendungsschichten (7–5)</div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--purple-bd);">
+        <div style="background:var(--purple-bd);color:#fff;width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">7</div>
+        <div style="flex:1;background:var(--purple-bg);padding:8px 12px;">
+          <strong style="color:var(--purple-tx);">Anwendung</strong>
+          <span style="color:var(--purple-tx);opacity:0.65;font-size:11px;margin-left:6px;">Application</span>
+          <div style="font-size:11px;color:var(--purple-tx);opacity:0.8;margin-top:2px;">Schnittstelle für Benutzerprogramme (Browser, Mail, FTP)</div>
+        </div>
+        <div style="background:var(--purple-bg);padding:8px 12px;border-left:0.5px solid var(--purple-bd);font-size:11px;color:var(--purple-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">HTTP · DNS · SMTP · LDAP</div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--purple-bd);">
+        <div style="background:var(--purple-bg);color:var(--purple-tx);width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;border-right:0.5px solid var(--purple-bd);">6</div>
+        <div style="flex:1;background:var(--purple-bg);padding:8px 12px;">
+          <strong style="color:var(--purple-tx);">Darstellung</strong>
+          <span style="color:var(--purple-tx);opacity:0.65;font-size:11px;margin-left:6px;">Presentation</span>
+          <div style="font-size:11px;color:var(--purple-tx);opacity:0.8;margin-top:2px;">Datenformatierung, Verschlüsselung, Komprimierung</div>
+        </div>
+        <div style="background:var(--purple-bg);padding:8px 12px;border-left:0.5px solid var(--purple-bd);font-size:11px;color:var(--purple-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">TLS/SSL · JPEG · ASCII</div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--purple-bd);">
+        <div style="background:var(--purple-bg);color:var(--purple-tx);width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;border-right:0.5px solid var(--purple-bd);">5</div>
+        <div style="flex:1;background:var(--purple-bg);padding:8px 12px;">
+          <strong style="color:var(--purple-tx);">Sitzung</strong>
+          <span style="color:var(--purple-tx);opacity:0.65;font-size:11px;margin-left:6px;">Session</span>
+          <div style="font-size:11px;color:var(--purple-tx);opacity:0.8;margin-top:2px;">Verbindungsauf- und -abbau, Sitzungsverwaltung</div>
+        </div>
+        <div style="background:var(--purple-bg);padding:8px 12px;border-left:0.5px solid var(--purple-bd);font-size:11px;color:var(--purple-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">NetBIOS · RPC · SSH</div>
+      </div>
+
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;font-weight:500;padding:6px 0 4px;">Transportschicht (4)</div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--blue-bd);">
+        <div style="background:var(--blue-bd);color:#fff;width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">4</div>
+        <div style="flex:1;background:var(--blue-bg);padding:8px 12px;">
+          <strong style="color:var(--blue-tx);">Transport</strong>
+          <span style="color:var(--blue-tx);opacity:0.65;font-size:11px;margin-left:6px;">Transport</span>
+          <div style="font-size:11px;color:var(--blue-tx);opacity:0.8;margin-top:2px;">Zuverlässige Übertragung, Ports, Fehlerkontrolle, Segmentierung</div>
+        </div>
+        <div style="background:var(--blue-bg);padding:8px 12px;border-left:0.5px solid var(--blue-bd);font-size:11px;color:var(--blue-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">TCP · UDP · Port 80/443/22</div>
+      </div>
+
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;font-weight:500;padding:6px 0 4px;">Infrastrukturschichten (3–1)</div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--teal-bd);">
+        <div style="background:var(--teal-bd);color:#fff;width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">3</div>
+        <div style="flex:1;background:var(--teal-bg);padding:8px 12px;">
+          <strong style="color:var(--teal-tx);">Vermittlung</strong>
+          <span style="color:var(--teal-tx);opacity:0.65;font-size:11px;margin-left:6px;">Network</span>
+          <div style="font-size:11px;color:var(--teal-tx);opacity:0.8;margin-top:2px;">IP-Adressierung, Routing zwischen Netzwerken</div>
+        </div>
+        <div style="background:var(--teal-bg);padding:8px 12px;border-left:0.5px solid var(--teal-bd);font-size:11px;color:var(--teal-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">IP · ICMP · Router</div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--green-bd);">
+        <div style="background:var(--green-bg);color:var(--green-tx);width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;border-right:0.5px solid var(--green-bd);">2</div>
+        <div style="flex:1;background:var(--green-bg);padding:8px 12px;">
+          <strong style="color:var(--green-tx);">Sicherung</strong>
+          <span style="color:var(--green-tx);opacity:0.65;font-size:11px;margin-left:6px;">Data Link</span>
+          <div style="font-size:11px;color:var(--green-tx);opacity:0.8;margin-top:2px;">MAC-Adressen, Frames, VLAN-Tagging (802.1Q)</div>
+        </div>
+        <div style="background:var(--green-bg);padding:8px 12px;border-left:0.5px solid var(--green-bd);font-size:11px;color:var(--green-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">MAC · Ethernet · Switch</div>
+      </div>
+
+      <div style="display:flex;align-items:stretch;border-radius:var(--rad);overflow:hidden;border:0.5px solid var(--amber-bd);">
+        <div style="background:var(--amber-bg);color:var(--amber-tx);width:36px;min-width:36px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;border-right:0.5px solid var(--amber-bd);">1</div>
+        <div style="flex:1;background:var(--amber-bg);padding:8px 12px;">
+          <strong style="color:var(--amber-tx);">Bitübertragung</strong>
+          <span style="color:var(--amber-tx);opacity:0.65;font-size:11px;margin-left:6px;">Physical</span>
+          <div style="font-size:11px;color:var(--amber-tx);opacity:0.8;margin-top:2px;">Physische Übertragung von Bits über Kabel, Funk oder Licht</div>
+        </div>
+        <div style="background:var(--amber-bg);padding:8px 12px;border-left:0.5px solid var(--amber-bd);font-size:11px;color:var(--amber-tx);display:flex;align-items:center;white-space:nowrap;flex-shrink:0;">Kabel · WLAN · Hub</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── WARUM OSI? ── -->
+  <div class="card card-blue" style="margin-bottom:12px;">
+    <div class="label">Warum brauchen wir das OSI-Modell?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+      <div class="step-row">
+        <div class="step-num step-num-blue">1</div>
+        <div><strong>Fehlersuche:</strong> "Das Problem liegt auf Schicht 3" – sofort klar: IP-Routing-Problem, kein Kabeldefekt.</div>
+      </div>
+      <div class="step-row">
+        <div class="step-num step-num-blue">2</div>
+        <div><strong>Interoperabilität:</strong> Hersteller bauen Geräte, die auf bestimmten Schichten zusammenarbeiten – Switch (Schicht 2), Router (Schicht 3).</div>
+      </div>
+      <div class="step-row">
+        <div class="step-num step-num-blue">3</div>
+        <div><strong>Gemeinsame Sprache:</strong> Netzwerker weltweit sprechen dieselbe Schichtensprache – "Layer 2", "Layer 7 Protokoll".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SZENARIO X ZUORDNUNG ── -->
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:12px;">
+    <div style="padding:10px 14px 6px;"><div class="label">Szenario X – Was liegt auf welcher Schicht?</div></div>
+    <table>
+      <thead><tr><th>Schicht</th><th>Im Projekt</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-purple">7 Anwendung</span></td>
+          <td>Webserver (Apache/Nginx), DNS, DokuWiki, LDAP</td>
+          <td><code>http://wiki.local</code></td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-purple">6 Darstellung</span></td>
+          <td>HTTPS-Verschlüsselung via TLS</td>
+          <td><code>https://</code> = TLS aktiv</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-purple">5 Sitzung</span></td>
+          <td>SSH-Sitzungen zu den Raspberry Pis</td>
+          <td><code>ssh pi@192.168.10.2</code></td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">4 Transport</span></td>
+          <td>Firewall-Regeln auf Port-Ebene, TCP/UDP</td>
+          <td><code>--dport 22</code>, <code>--dport 80</code></td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-teal">3 Vermittlung</span></td>
+          <td>Router (OpenWRT), IP-Adressen, VLAN-Routing</td>
+          <td><code>192.168.10.1</code> als Gateway</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-green">2 Sicherung</span></td>
+          <td>Managed Switch, VLAN-Tagging 802.1Q</td>
+          <td>VLAN 10 / 20 / 30 am Switch</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-amber">1 Bitübertragung</span></td>
+          <td>Cat5e/Cat6 Kabel, WLAN-Signal (Access Point)</td>
+          <td>Netzwerkkabel am Raspberry Pi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── DATENKAPSELUNG ── -->
+  <div class="card card-teal">
+    <div class="label">Datenkapselung: So wird ein HTTP-Paket "eingepackt"</div>
+    <p style="font-size:13px;margin-bottom:10px;">Beim Senden fügt jede Schicht einen <strong>Header</strong> hinzu (Enkapsulation). Beim Empfänger wird er Schicht für Schicht wieder entfernt (Dekapsulation).</p>
+    <div style="display:flex;flex-direction:column;gap:3px;font-family:var(--mono);font-size:12px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--purple-tx);min-width:80px;flex-shrink:0;">[Schicht 7]</span>
+        <div style="flex:1;background:var(--purple-bg);border:0.5px solid var(--purple-bd);border-radius:4px;padding:5px 10px;color:var(--purple-tx);">HTTP-Daten: "GET /index.html HTTP/1.1"</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--blue-tx);min-width:80px;flex-shrink:0;">[Schicht 4]</span>
+        <div style="flex:1;background:var(--blue-bg);border:0.5px solid var(--blue-bd);border-radius:4px;padding:5px 10px;color:var(--blue-tx);"><span style="opacity:0.6;border-right:1px solid var(--blue-bd);margin-right:8px;padding-right:8px;">TCP-Header</span> HTTP-Daten</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--teal-tx);min-width:80px;flex-shrink:0;">[Schicht 3]</span>
+        <div style="flex:1;background:var(--teal-bg);border:0.5px solid var(--teal-bd);border-radius:4px;padding:5px 10px;color:var(--teal-tx);"><span style="opacity:0.6;border-right:1px solid var(--teal-bd);margin-right:8px;padding-right:8px;">IP-Header</span> TCP-Header | HTTP-Daten</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--green-tx);min-width:80px;flex-shrink:0;">[Schicht 2]</span>
+        <div style="flex:1;background:var(--green-bg);border:0.5px solid var(--green-bd);border-radius:4px;padding:5px 10px;color:var(--green-tx);"><span style="opacity:0.6;border-right:1px solid var(--green-bd);margin-right:8px;padding-right:8px;">Ethernet-Frame</span> IP | TCP | HTTP-Daten</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="color:var(--amber-tx);min-width:80px;flex-shrink:0;">[Schicht 1]</span>
+        <div style="flex:1;background:var(--amber-bg);border:0.5px solid var(--amber-bd);border-radius:4px;padding:5px 10px;color:var(--amber-tx);">&#9889; 0101101010111001... (Bits über das Kabel)</div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--teal-tx);margin-top:8px;margin-bottom:0;">Beim Empfänger (z.B. Webserver auf <code>192.168.30.5</code>) wird jede Schicht der Reihe nach wieder "ausgepackt".</p>
+  </div>
+
+</div>
+
 </main>
 
 <script>
@@ -821,6 +1013,7 @@ const TERMS = [
   {id:'nat',title:'NAT',sub:'Adress-Übersetzung',badge:'Sicherheit',col:'amber'},
   {id:'vpn',title:'VPN',sub:'Verschlüsselter Tunnel',badge:'Sicherheit',col:'purple'},
   {id:'dmz',title:'DMZ',sub:'Sichere Eingangszone',badge:'Sicherheit',col:'red'},
+  {id:'osi',title:'OSI-Modell',sub:'7-Schichten-Referenzmodell',badge:'Grundlagen',col:'teal'},
   {id:'subnetzrechner',title:'Subnetzrechner',sub:'Python-Tool',badge:'Programmierung',col:'purple'},
 ];
 
