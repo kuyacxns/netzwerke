@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netzwerk Glossar – Alle Fachbegriffe interaktiv</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#ffffff;--surface:#f5f5f3;--surface2:#ebebea;
+  --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.2);
+  --text:#1a1a18;--text2:#5a5a56;--text3:#8a8a84;
+  --blue-bg:#e6f1fb;--blue-bd:#378add;--blue-tx:#0c447c;
+  --green-bg:#eaf3de;--green-bd:#639922;--green-tx:#27500a;
+  --amber-bg:#faeeda;--amber-bd:#ba7517;--amber-tx:#633806;
+  --red-bg:#fcebeb;--red-bd:#e24b4a;--red-tx:#501313;
+  --purple-bg:#eeedfe;--purple-bd:#7f77dd;--purple-tx:#26215c;
+  --teal-bg:#e1f5ee;--teal-bd:#1d9e75;--teal-tx:#04342c;
+  --font:system-ui,-apple-system,sans-serif;
+  --mono:ui-monospace,'Cascadia Code',monospace;
+  --rad:8px;--radlg:12px;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#181816;--surface:#222220;--surface2:#2c2c2a;
+  --border:rgba(255,255,255,0.09);--border2:rgba(255,255,255,0.18);
+  --text:#f0ede8;--text2:#a0a09a;--text3:#686862;
+  --blue-bg:#042c53;--blue-bd:#378add;--blue-tx:#b5d4f4;
+  --green-bg:#173404;--green-bd:#639922;--green-tx:#c0dd97;
+  --amber-bg:#412402;--amber-bd:#ba7517;--amber-tx:#fac775;
+  --red-bg:#501313;--red-bd:#e24b4a;--red-tx:#f7c1c1;
+  --purple-bg:#26215c;--purple-bd:#7f77dd;--purple-tx:#cecbf6;
+  --teal-bg:#04342c;--teal-bd:#1d9e75;--teal-tx:#9fe1cb;
+}}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6;display:flex;min-height:100vh;}
+/* Sidebar */
+#sidebar{width:220px;min-width:220px;background:var(--surface);border-right:0.5px solid var(--border2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+#sidebar-header{padding:16px 16px 8px;border-bottom:0.5px solid var(--border);}
+#sidebar-header h1{font-size:14px;font-weight:500;color:var(--text);}
+#sidebar-header p{font-size:11px;color:var(--text3);margin-top:2px;}
+.nav-group{padding:8px 0;}
+.nav-group-label{font-size:10px;font-weight:500;color:var(--text3);padding:4px 16px;text-transform:uppercase;letter-spacing:0.08em;}
+.nav-item{display:block;padding:7px 16px;font-size:13px;color:var(--text2);cursor:pointer;border-left:2.5px solid transparent;transition:all 0.12s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.nav-item:hover{background:var(--surface2);color:var(--text);}
+.nav-item.active{background:var(--blue-bg);color:var(--blue-tx);border-left-color:var(--blue-bd);font-weight:500;}
+/* Main */
+#main{flex:1;overflow-y:auto;padding:28px 32px;max-width:780px;}
+@media(max-width:640px){
+  body{flex-direction:column;}
+  #sidebar{width:100%;min-width:unset;height:auto;position:static;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;border-right:none;border-bottom:0.5px solid var(--border2);}
+  #sidebar-header{display:none;}
+  .nav-group{display:flex;flex-direction:row;padding:4px 0;}
+  .nav-group-label{display:none;}
+  .nav-item{white-space:nowrap;padding:10px 14px;border-left:none;border-bottom:2.5px solid transparent;}
+  .nav-item.active{border-left:none;border-bottom-color:var(--blue-bd);}
+  #main{padding:20px 16px;}
+}
+/* Content */
+.page{display:none;}
+.page.active{display:block;}
+.page-title{font-size:22px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.page-subtitle{font-size:13px;color:var(--text3);font-family:var(--mono);margin-bottom:20px;}
+p{color:var(--text);margin-bottom:12px;font-size:14px;}
+strong{font-weight:500;}
+code{font-family:var(--mono);font-size:0.88em;background:var(--surface2);padding:1px 5px;border-radius:4px;}
+.card{background:var(--surface);border-radius:var(--radlg);padding:14px 18px;border:0.5px solid var(--border);margin-bottom:12px;}
+.card-blue{border-color:var(--blue-bd);}
+.card-green{border-color:var(--green-bd);}
+.card-red{border-color:var(--red-bd);}
+.card-amber{border-color:var(--amber-bd);}
+.card-purple{border-color:var(--purple-bd);}
+.card-teal{border-color:var(--teal-bd);}
+.label{font-size:11px;color:var(--text3);margin-bottom:5px;}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:500;margin:2px;}
+.tag-blue{background:var(--blue-bg);color:var(--blue-tx);}
+.tag-green{background:var(--green-bg);color:var(--green-tx);}
+.tag-amber{background:var(--amber-bg);color:var(--amber-tx);}
+.tag-red{background:var(--red-bg);color:var(--red-tx);}
+.tag-purple{background:var(--purple-bg);color:var(--purple-tx);}
+.tag-teal{background:var(--teal-bg);color:var(--teal-tx);}
+.analogy{background:var(--amber-bg);border-left:3px solid var(--amber-bd);border-radius:0 var(--rad) var(--rad) 0;padding:10px 14px;margin:10px 0;font-size:13px;color:var(--amber-tx);font-style:italic;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:500px){.grid2,.grid3{grid-template-columns:1fr;}}
+.metric{background:var(--surface);border-radius:var(--rad);padding:12px 14px;border:0.5px solid var(--border);}
+.metric-label{font-size:11px;color:var(--text3);margin-bottom:3px;}
+.metric-val{font-size:15px;font-weight:500;font-family:var(--mono);}
+.blue{color:var(--blue-tx);}.green{color:var(--green-tx);}.amber{color:var(--amber-tx);}.red{color:var(--red-tx);}.purple{color:var(--purple-tx);}.teal{color:var(--teal-tx);}
+.step-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;}
+.step-num{min-width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0;}
+.step-num-blue{background:var(--blue-bg);color:var(--blue-tx);}
+.step-num-green{background:var(--green-bg);color:var(--green-tx);}
+.step-num-red{background:var(--red-bg);color:var(--red-tx);}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.flow-box{background:var(--surface);border:0.5px solid var(--border2);border-radius:var(--rad);padding:8px 12px;font-size:13px;font-family:var(--mono);}
+.flow-arrow{color:var(--text3);font-size:16px;}
+.bit-block{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;font-size:11px;font-weight:500;border-radius:3px;margin:1px;}
+.bit-net{background:var(--blue-bg);color:var(--blue-tx);border:1px solid var(--blue-bd);}
+.bit-host{background:var(--green-bg);color:var(--green-tx);border:1px solid var(--green-bd);}
+.bar-row{display:grid;grid-template-columns:50px 1fr 40px;gap:8px;align-items:center;font-size:13px;margin:5px 0;}
+.bar-fill{height:16px;border-radius:3px;min-width:4px;}
+select,input[type=text]{font-size:13px;padding:6px 10px;border-radius:var(--rad);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);font-family:var(--font);}
+.form-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-label{font-size:12px;color:var(--text2);}
+.house-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:var(--rad);border:1.5px solid;margin:2px;}
+.house-used{background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue-tx);}
+.house-free{background:var(--green-bg);border-color:var(--green-bd);color:var(--green-tx);}
+.house-resv{background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber-tx);}
+.house-lbl{font-size:9px;color:var(--text3);text-align:center;display:block;}
+.rule-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--rad);margin-bottom:6px;font-size:13px;}
+.rule-allow{background:var(--green-bg);border:0.5px solid var(--green-bd);}
+.rule-deny{background:var(--red-bg);border:0.5px solid var(--red-bd);}
+.rule-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot-green{background:var(--green-bd);}
+.dot-red{background:var(--red-bd);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:var(--surface2);padding:8px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--border2);}
+td{padding:7px 10px;border-bottom:0.5px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.home-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radlg);padding:14px;cursor:pointer;transition:border-color 0.15s,background 0.15s;}
+.home-card:hover{border-color:var(--blue-bd);background:var(--blue-bg);}
+.home-card:hover .hc-title{color:var(--blue-tx);}
+.hc-badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:500;margin-bottom:8px;}
+.hc-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px;}
+.hc-sub{font-size:11px;color:var(--text3);}
+/* Chat panel */
+#chat-toggle{position:fixed;bottom:24px;right:24px;width:52px;height:52px;border-radius:50%;background:var(--blue-bd);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.18);z-index:100;transition:transform 0.15s;}
+#chat-toggle:hover{transform:scale(1.08);}
+#chat-toggle svg{width:22px;height:22px;fill:white;}
+#chat-panel{position:fixed;bottom:88px;right:24px;width:360px;max-height:560px;background:var(--bg);border:0.5px solid var(--border2);border-radius:var(--radlg);display:flex;flex-direction:column;z-index:100;box-shadow:0 4px 24px rgba(0,0,0,0.14);overflow:hidden;transition:opacity 0.2s,transform 0.2s;}
+#chat-panel.hidden{opacity:0;pointer-events:none;transform:translateY(12px);}
+#chat-header{background:var(--surface);padding:12px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;}
+#chat-header-text{flex:1;}
+#chat-header-title{font-size:14px;font-weight:500;color:var(--text);}
+#chat-header-sub{font-size:11px;color:var(--text3);}
+#chat-close{background:none;border:none;cursor:pointer;color:var(--text3);font-size:18px;line-height:1;padding:2px 4px;}
+#chat-close:hover{color:var(--text);}
+#chat-key-area{padding:10px 14px;border-bottom:0.5px solid var(--border);background:var(--amber-bg);}
+#chat-key-area p{font-size:11px;color:var(--amber-tx);margin-bottom:6px;}
+#chat-key-row{display:flex;gap:6px;}
+#chat-key-input{flex:1;font-size:12px;padding:5px 8px;border-radius:var(--rad);border:0.5px solid var(--amber-bd);background:var(--bg);color:var(--text);font-family:var(--mono);}
+#chat-key-btn{padding:5px 10px;border-radius:var(--rad);border:0.5px solid var(--amber-bd);background:var(--amber-bd);color:white;cursor:pointer;font-size:12px;white-space:nowrap;}
+#chat-key-btn:hover{opacity:0.85;}
+#chat-key-saved{padding:8px 14px;border-bottom:0.5px solid var(--border);background:var(--green-bg);font-size:11px;color:var(--green-tx);display:flex;align-items:center;justify-content:space-between;}
+#chat-key-saved button{background:none;border:none;cursor:pointer;font-size:11px;color:var(--green-tx);text-decoration:underline;}
+#chat-messages{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-height:180px;}
+.chat-msg{max-width:90%;padding:8px 12px;border-radius:var(--radlg);font-size:13px;line-height:1.55;}
+.chat-msg.user{align-self:flex-end;background:var(--blue-bd);color:white;border-bottom-right-radius:4px;}
+.chat-msg.ai{align-self:flex-start;background:var(--surface);border:0.5px solid var(--border);color:var(--text);border-bottom-left-radius:4px;}
+.chat-msg.system{align-self:center;background:var(--surface2);color:var(--text3);font-size:11px;border-radius:99px;padding:4px 12px;}
+.chat-typing{align-self:flex-start;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radlg);border-bottom-left-radius:4px;padding:10px 14px;display:flex;gap:4px;align-items:center;}
+.chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--text3);animation:bounce 1.2s infinite;}
+.chat-typing span:nth-child(2){animation-delay:0.2s;}
+.chat-typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+#chat-input-area{padding:10px 12px;border-top:0.5px solid var(--border);display:flex;gap:8px;align-items:flex-end;}
+#chat-input{flex:1;resize:none;border:0.5px solid var(--border2);border-radius:var(--rad);padding:8px 10px;font-size:13px;font-family:var(--font);background:var(--bg);color:var(--text);max-height:100px;line-height:1.5;}
+#chat-input:focus{outline:none;border-color:var(--blue-bd);}
+#chat-send{padding:8px 14px;border-radius:var(--rad);border:none;background:var(--blue-bd);color:white;cursor:pointer;font-size:13px;font-weight:500;white-space:nowrap;}
+#chat-send:hover{opacity:0.88;}
+#chat-send:disabled{opacity:0.4;cursor:not-allowed;}
+#chat-context-bar{padding:6px 14px;background:var(--purple-bg);border-bottom:0.5px solid var(--purple-bd);font-size:11px;color:var(--purple-tx);}
+@media(max-width:500px){#chat-panel{width:calc(100vw - 32px);right:16px;bottom:80px;}#chat-toggle{right:16px;bottom:16px;}}
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div id="sidebar-header">
+    <h1>Netzwerk Glossar</h1>
+    <p>Szenario X – Fachbegriffe</p>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Start</div>
+    <div class="nav-item active" onclick="show('home')">Alle Begriffe</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Adressen & Netze</div>
+    <div class="nav-item" onclick="show('ip')">IP-Adresse</div>
+    <div class="nav-item" onclick="show('subnet')">Subnetzmaske</div>
+    <div class="nav-item" onclick="show('lanwan')">LAN &amp; WAN</div>
+    <div class="nav-item" onclick="show('vlan')">VLAN</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Geräte</div>
+    <div class="nav-item" onclick="show('router')">Router</div>
+    <div class="nav-item" onclick="show('switch')">Switch</div>
+    <div class="nav-item" onclick="show('wlan')">WLAN &amp; Access Point</div>
+    <div class="nav-item" onclick="show('rpi')">Raspberry Pi</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Dienste</div>
+    <div class="nav-item" onclick="show('dhcp')">DHCP</div>
+    <div class="nav-item" onclick="show('dns')">DNS</div>
+    <div class="nav-item" onclick="show('webserver')">Webserver</div>
+    <div class="nav-item" onclick="show('wiki')">Wiki-Server</div>
+    <div class="nav-item" onclick="show('ldap')">LDAP</div>
+    <div class="nav-item" onclick="show('openwrt')">OpenWRT</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Sicherheit</div>
+    <div class="nav-item" onclick="show('firewall')">Firewall</div>
+    <div class="nav-item" onclick="show('nat')">NAT</div>
+    <div class="nav-item" onclick="show('vpn')">VPN</div>
+    <div class="nav-item" onclick="show('dmz')">DMZ</div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Programmierung</div>
+    <div class="nav-item" onclick="show('subnetzrechner')">Subnetzrechner</div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="page-title">Alle Fachbegriffe</div>
+  <p style="color:var(--text2);margin-bottom:20px;">Klick auf einen Begriff, um die interaktive Erklärung zu öffnen.</p>
+  <div class="home-grid" id="home-grid"></div>
+</div>
+
+<!-- IP-ADRESSE -->
+<div id="page-ip" class="page">
+  <div class="page-title">IP-Adresse</div>
+  <div class="page-subtitle">Internet Protocol Address</div>
+  <div class="analogy">Wie die Postadresse deines Hauses – eindeutig, damit Datenpakete ankommen.</div>
+  <p>Jedes Gerät in einem Netzwerk braucht eine eindeutige Adresse – die <strong>IP-Adresse</strong>. Ohne sie wüsste das Netzwerk nicht, wohin ein Datenpaket soll.</p>
+  <div class="card card-blue" style="margin-bottom:12px;">
+    <div class="label">Aufbau einer IPv4-Adresse</div>
+    <div style="font-family:var(--mono);font-size:20px;font-weight:500;letter-spacing:2px;margin-bottom:10px;">
+      <span style="color:var(--red-tx);">192</span><span style="color:var(--text3);">.</span><span style="color:var(--amber-tx);">168</span><span style="color:var(--text3);">.</span><span style="color:var(--blue-tx);">10</span><span style="color:var(--text3);">.</span><span style="color:var(--green-tx);">5</span>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <span class="tag tag-red">192 = Grobe Region</span>
+      <span class="tag tag-amber">168 = Netzbereich</span>
+      <span class="tag tag-blue">10 = Subnetz</span>
+      <span class="tag tag-green">5 = Gerät</span>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="label">Private IP (im eigenen Netz)</div>
+      <div style="font-family:var(--mono);font-size:15px;font-weight:500;color:var(--green-tx);margin-bottom:6px;">192.168.x.x</div>
+      <p style="margin:0;font-size:13px;">Nur innerhalb des lokalen Netzwerks gültig. Kein Gerät im Internet hat diese Adresse – sie sind reserviert für private Netze.</p>
+    </div>
+    <div class="card">
+      <div class="label">Öffentliche IP (im Internet)</div>
+      <div style="font-family:var(--mono);font-size:15px;font-weight:500;color:var(--blue-tx);margin-bottom:6px;">85.214.132.117</div>
+      <p style="margin:0;font-size:13px;">Weltweit eindeutig. Diese Adresse bekommt dein Router vom Internetanbieter – über sie bist du im Internet erreichbar.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="label">IPv4 vs. IPv6</div>
+    <table><thead><tr><th>Merkmal</th><th>IPv4</th><th>IPv6</th></tr></thead>
+    <tbody>
+      <tr><td>Format</td><td>4 × 0–255</td><td>8 Hex-Blöcke</td></tr>
+      <tr><td>Beispiel</td><td><code>192.168.1.1</code></td><td><code>fe80::1</code></td></tr>
+      <tr><td>Adressen</td><td>~4,3 Milliarden</td><td>~340 Sextillionen</td></tr>
+      <tr><td>Status</td><td>Weitgehend voll</td><td>Nachfolger</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- SUBNETZMASKE -->
+<div id="page-subnet" class="page">
+  <div class="page-title">Subnetzmaske</div>
+  <div class="page-subtitle">Netmask / CIDR-Notation</div>
+  <div class="analogy">Wie die Postleitzahl: sie definiert, welche Häuser (Geräte) zum selben Ort (Netzwerk) gehören.</div>
+  <p>Die Subnetzmaske legt fest, <strong>wie groß ein Netzwerk ist</strong> – wie viele Geräte darin Platz haben und welche IP-Adressen zusammengehören.</p>
+  <div class="card card-blue">
+    <div class="label">Bit-Ansicht: 192.168.10.5 /24</div>
+    <div style="margin:8px 0 10px;line-height:2.2;">
+      <span class="bit-block bit-net">1</span><span class="bit-block bit-net">1</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span>
+      <span style="margin:0 3px;color:var(--text3);">.</span>
+      <span class="bit-block bit-net">1</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">1</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">1</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span>
+      <span style="margin:0 3px;color:var(--text3);">.</span>
+      <span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">1</span><span class="bit-block bit-net">0</span><span class="bit-block bit-net">1</span><span class="bit-block bit-net">0</span>
+      <span style="margin:0 3px;color:var(--text3);">.</span>
+      <span class="bit-block bit-host">0</span><span class="bit-block bit-host">0</span><span class="bit-block bit-host">0</span><span class="bit-block bit-host">0</span><span class="bit-block bit-host">0</span><span class="bit-block bit-host">1</span><span class="bit-block bit-host">0</span><span class="bit-block bit-host">1</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span class="tag tag-blue">24 Netz-Bits = 192.168.10</span>
+      <span class="tag tag-green">8 Host-Bits = .5 → 254 Geräte möglich</span>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Vergleich verschiedener Masken</div>
+    <div class="bar-row"><span style="font-family:var(--mono);">/24</span><div class="bar-fill" style="background:var(--blue-bg);border:1px solid var(--blue-bd);width:100%;"></div><span>254</span></div>
+    <div class="bar-row"><span style="font-family:var(--mono);">/25</span><div class="bar-fill" style="background:var(--green-bg);border:1px solid var(--green-bd);width:50%;"></div><span>126</span></div>
+    <div class="bar-row"><span style="font-family:var(--mono);">/26</span><div class="bar-fill" style="background:var(--green-bg);border:1px solid var(--green-bd);width:25%;"></div><span>62</span></div>
+    <div class="bar-row"><span style="font-family:var(--mono);">/30</span><div class="bar-fill" style="background:var(--amber-bg);border:1px solid var(--amber-bd);width:2%;min-width:6px;"></div><span>2</span></div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Rechner</div>
+    <div class="form-row">
+      <div class="form-group"><span class="form-label">CIDR</span>
+        <select id="s-cidr" onchange="calcSub()"><option value="24">/24</option><option value="25">/25</option><option value="26">/26</option><option value="27">/27</option><option value="28">/28</option><option value="30">/30</option></select>
+      </div>
+      <div class="form-group"><span class="form-label">IP</span>
+        <input type="text" id="s-ip" value="192.168.10.0" oninput="calcSub()" style="width:150px;font-family:var(--mono);" />
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;" id="s-cards"></div>
+  </div>
+</div>
+
+<!-- LAN & WAN -->
+<div id="page-lanwan" class="page">
+  <div class="page-title">LAN &amp; WAN</div>
+  <div class="page-subtitle">Local Area Network / Wide Area Network</div>
+  <div class="analogy">LAN = dein Zuhause. WAN = die öffentliche Strasse. Der Router steht in der Haustür dazwischen.</div>
+  <div class="grid2">
+    <div class="card card-blue">
+      <div style="font-size:15px;font-weight:500;color:var(--blue-tx);margin-bottom:8px;">LAN – Lokales Netzwerk</div>
+      <p style="font-size:13px;margin-bottom:8px;">Alle Geräte an einem Standort – Wohnung, Büro, Schulgebäude. Verbunden per Kabel (Ethernet) oder WLAN.</p>
+      <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text2);">
+        <span>Reichweite: innerhalb eines Gebäudes</span>
+        <span>Geschwindigkeit: bis 10 Gbit/s</span>
+        <span>Beispiel: unser Schulnetzwerk</span>
+      </div>
+    </div>
+    <div class="card card-green">
+      <div style="font-size:15px;font-weight:500;color:var(--green-tx);margin-bottom:8px;">WAN – Weitverkehrsnetz</div>
+      <p style="font-size:13px;margin-bottom:8px;">Verbindet mehrere LANs über große Entfernungen. Das Internet ist das größte WAN der Welt.</p>
+      <div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--text2);">
+        <span>Reichweite: städte- bis weltweit</span>
+        <span>Verbindung: Glasfaser, DSL, Satellit</span>
+        <span>Beispiel: das Internet</span>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:4px;">
+    <div class="label">Wie sie zusammenarbeiten</div>
+    <div class="flow">
+      <div class="flow-box" style="background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue-tx);">Dein PC<br><small>192.168.1.5</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber-tx);">Router<br><small>Gateway</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="background:var(--green-bg);border-color:var(--green-bd);color:var(--green-tx);">Internet<br><small>WAN</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">google.com<br><small>142.250.x.x</small></div>
+    </div>
+    <p style="font-size:12px;color:var(--text3);margin:0;">Der Router übersetzt zwischen der privaten LAN-Adresse und der öffentlichen WAN-Adresse (NAT).</p>
+  </div>
+</div>
+
+<!-- VLAN -->
+<div id="page-vlan" class="page">
+  <div class="page-title">VLAN</div>
+  <div class="page-subtitle">Virtual Local Area Network</div>
+  <div class="analogy">Stockwerke im Bürogebäude: alle nutzen dasselbe Gebäude (Switch), aber jeder Stock (VLAN) ist ein eigener Bereich.</div>
+  <p>Ein VLAN teilt ein physisches Netzwerk in <strong>logisch getrennte Bereiche</strong> auf. Geräte in verschiedenen VLANs können nicht direkt miteinander kommunizieren – nur über einen Router.</p>
+  <div class="card" style="overflow:hidden;padding:0;">
+    <table><thead><tr><th>VLAN</th><th>Name</th><th>Netz</th><th>Geräte</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag tag-blue">10</span></td><td>Management</td><td><code>192.168.10.0/24</code></td><td>Router, Raspberry Pi, Admins</td></tr>
+      <tr><td><span class="tag tag-green">20</span></td><td>Clients</td><td><code>192.168.20.0/24</code></td><td>Laptops, PCs, Smartphones</td></tr>
+      <tr><td><span class="tag tag-amber">30</span></td><td>Server</td><td><code>192.168.30.0/24</code></td><td>Webserver, DNS, Wiki, LDAP</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card card-purple" style="margin-top:12px;">
+    <div class="label">Warum VLANs?</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+      <div class="step-row"><div class="step-num step-num-blue">1</div><div><strong>Sicherheit:</strong> Ein Angreifer im Client-VLAN kommt nicht an die Server heran.</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">2</div><div><strong>Ordnung:</strong> Jeder Bereich hat seinen eigenen IP-Adressbereich – übersichtlich.</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">3</div><div><strong>Performance:</strong> Broadcast-Pakete bleiben im eigenen VLAN – kein Lärm im ganzen Netz.</div></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Benötigt: Managed Switch</div>
+    <p style="font-size:13px;margin:0;">Ein einfacher (unmanaged) Switch versteht keine VLANs. Wir brauchen einen <strong>Managed Switch</strong>, der VLAN-Tags (802.1Q) versteht und den Datenverkehr entsprechend trennt.</p>
+  </div>
+</div>
+
+<!-- ROUTER -->
+<div id="page-router" class="page">
+  <div class="page-title">Router</div>
+  <div class="page-subtitle">Netzwerk-Wegewahl-Gerät</div>
+  <div class="analogy">Postverteilzentrum: Pakete kommen an und werden je nach Adresse in die richtige Richtung weitergeschickt.</div>
+  <p>Ein Router verbindet <strong>zwei oder mehr Netzwerke</strong> und leitet Datenpakete zwischen ihnen weiter. Er entscheidet anhand der Ziel-IP, wohin ein Paket geschickt wird.</p>
+  <div class="card card-amber">
+    <div class="label">Aufgaben des Routers in unserem Projekt</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;font-size:13px;">
+      <div>→ LAN mit dem Internet (WAN) verbinden</div>
+      <div>→ Datenverkehr zwischen den 3 VLANs routen</div>
+      <div>→ NAT durchführen (private ↔ öffentliche IP)</div>
+      <div>→ Standard-Gateway für alle Geräte</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Router vs. Switch – der Unterschied</div>
+    <table><thead><tr><th></th><th>Router</th><th>Switch</th></tr></thead>
+    <tbody>
+      <tr><td>Verbindet</td><td>verschiedene Netze</td><td>Geräte im selben Netz</td></tr>
+      <tr><td>Arbeitet mit</td><td>IP-Adressen (Schicht 3)</td><td>MAC-Adressen (Schicht 2)</td></tr>
+      <tr><td>Trifft Entscheidung</td><td>Wohin soll das Paket?</td><td>An welchen Port?</td></tr>
+      <tr><td>Beispiel</td><td>FRITZ!Box, OpenWRT-Pi</td><td>TP-Link, Cisco Switch</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card card-blue" style="margin-top:12px;">
+    <div class="label">OpenWRT auf dem Raspberry Pi</div>
+    <p style="font-size:13px;margin:0;">In unserem Projekt läuft der Router als Software (OpenWRT) auf einem Raspberry Pi. OpenWRT ist ein Linux-basiertes Router-Betriebssystem mit vollem VLAN-, Firewall- und VPN-Support.</p>
+  </div>
+</div>
+
+<!-- SWITCH -->
+<div id="page-switch" class="page">
+  <div class="page-title">Switch</div>
+  <div class="page-subtitle">Netzwerk-Verteiler</div>
+  <div class="analogy">Mehrfachsteckdose: viele Geräte anschließen, Strom (Datenpakete) fließt gezielt nur dorthin, wo er gebraucht wird.</div>
+  <p>Ein Switch verbindet mehrere Geräte <strong>innerhalb desselben Netzwerks</strong>. Im Gegensatz zum Hub schickt er Pakete nur an den Empfänger – nicht an alle.</p>
+  <div class="grid2">
+    <div class="card card-red">
+      <div style="font-size:14px;font-weight:500;color:var(--red-tx);margin-bottom:6px;">Hub (veraltet)</div>
+      <p style="font-size:13px;margin:0;">Schickt jedes Paket an <strong>alle</strong> angeschlossenen Geräte. Ineffizient, unsicher. Kaum noch im Einsatz.</p>
+    </div>
+    <div class="card card-green">
+      <div style="font-size:14px;font-weight:500;color:var(--green-tx);margin-bottom:6px;">Switch (modern)</div>
+      <p style="font-size:13px;margin:0;">Schickt Pakete <strong>gezielt</strong> an den richtigen Empfänger. Merkt sich MAC-Adressen in einer Tabelle.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Unmanaged vs. Managed Switch</div>
+    <table><thead><tr><th>Typ</th><th>Konfiguration</th><th>VLAN-Support</th><th>Für uns</th></tr></thead>
+    <tbody>
+      <tr><td>Unmanaged</td><td>Keine – einstecken &amp; fertig</td><td>Nein</td><td>Nicht geeignet</td></tr>
+      <tr><td><strong>Managed</strong></td><td>Web-Interface / CLI</td><td><strong>Ja</strong></td><td><strong>Notwendig</strong></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- WLAN -->
+<div id="page-wlan" class="page">
+  <div class="page-title">WLAN &amp; Access Point</div>
+  <div class="page-subtitle">Wireless LAN / IEEE 802.11</div>
+  <div class="analogy">Funktelefon statt Festnetz: keine Kabel, trotzdem mit dem Netzwerk verbunden.</div>
+  <p>WLAN ermöglicht die kabellose Verbindung von Geräten mit dem Netzwerk über Funksignale. Der <strong>Access Point (AP)</strong> stellt das WLAN-Signal bereit und verbindet WLAN-Geräte mit dem kabelgebundenen Netz.</p>
+  <div class="card card-amber">
+    <div class="label">Sicherheitsstandards – immer WPA2 oder WPA3 nutzen!</div>
+    <table><thead><tr><th>Standard</th><th>Sicherheit</th><th>Empfehlung</th></tr></thead>
+    <tbody>
+      <tr><td>WEP</td><td>Sehr schwach (geknackt)</td><td style="color:var(--red-tx);">Niemals nutzen</td></tr>
+      <tr><td>WPA</td><td>Schwach</td><td style="color:var(--red-tx);">Nicht nutzen</td></tr>
+      <tr><td>WPA2</td><td>Gut</td><td style="color:var(--amber-tx);">Mindeststandard</td></tr>
+      <tr><td>WPA3</td><td>Sehr gut</td><td style="color:var(--green-tx);">Empfohlen</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">WLAN in unserem Projekt</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;margin-top:4px;">
+      <div class="step-row"><div class="step-num step-num-blue">1</div><div>Access Point per Kabel mit dem Managed Switch verbinden</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">2</div><div>Switch-Port als Trunk konfigurieren (VLAN-Tags durchleiten)</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">3</div><div>SSID "Clients-WLAN" dem VLAN 20 zuweisen</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">4</div><div>WLAN-Gerät verbindet sich → bekommt IP aus 192.168.20.x</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- RPI -->
+<div id="page-rpi" class="page">
+  <div class="page-title">Raspberry Pi</div>
+  <div class="page-subtitle">Einplatinencomputer (SBC)</div>
+  <div class="analogy">Schweizer Taschenmesser der IT: klein wie eine Kreditkarte, günstig (~35–75 €), aber für alles verwendbar.</div>
+  <p>Der Raspberry Pi ist ein vollwertiger Linux-Computer auf einer einzigen Platine. In unserem Projekt übernimmt er mehrere Server-Rollen gleichzeitig.</p>
+  <div class="card card-red">
+    <div class="label">Mögliche Rollen in unserem Projekt</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--red-bd);flex-shrink:0;"></span>Router (OpenWRT)</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue-bd);flex-shrink:0;"></span>DHCP-Server</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal-bd);flex-shrink:0;"></span>DNS-Server</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--green-bd);flex-shrink:0;"></span>Webserver</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--red-bd);flex-shrink:0;"></span>Firewall</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--amber-bd);flex-shrink:0;"></span>Wiki-Server</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--purple-bd);flex-shrink:0;"></span>LDAP-Server</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Wichtige Befehle für den Raspberry Pi</div>
+    <div style="display:flex;flex-direction:column;gap:5px;font-size:12px;">
+      <code>ssh pi@192.168.10.2</code> – Remote-Verbindung per SSH<br>
+      <code>sudo apt update &amp;&amp; sudo apt upgrade</code> – System aktualisieren<br>
+      <code>sudo systemctl status dnsmasq</code> – Dienst-Status prüfen<br>
+      <code>ip addr show</code> – Netzwerkinterfaces anzeigen<br>
+      <code>cat /var/log/syslog</code> – Systemlogs lesen
+    </div>
+  </div>
+</div>
+
+<!-- DHCP -->
+<div id="page-dhcp" class="page">
+  <div class="page-title">DHCP</div>
+  <div class="page-subtitle">Dynamic Host Configuration Protocol</div>
+  <div class="analogy">Empfangsdame im Hotel: du checkst ein, sie gibt dir automatisch einen Zimmerschlüssel – du musst dir keine Nummer selbst aussuchen.</div>
+  <p>DHCP sorgt dafür, dass Geräte beim Eintritt ins Netzwerk <strong>automatisch eine IP-Adresse</strong> und alle weiteren Netzwerkeinstellungen bekommen – ohne manuelle Konfiguration.</p>
+  <div class="card card-green">
+    <div class="label">Was DHCP alles verteilt</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;margin-top:4px;">
+      <div><span class="tag tag-green">IP-Adresse</span> z.B. 192.168.20.105</div>
+      <div><span class="tag tag-blue">Subnetzmaske</span> 255.255.255.0</div>
+      <div><span class="tag tag-amber">Standard-Gateway</span> 192.168.20.1 (Router)</div>
+      <div><span class="tag tag-purple">DNS-Server</span> 192.168.20.2 (Pi)</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">DHCP-Ablauf (DORA)</div>
+    <div class="flow" style="flex-direction:column;align-items:flex-start;gap:6px;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span class="step-num step-num-blue" style="min-width:24px;height:24px;font-size:11px;">D</span><strong>Discover:</strong> Gerät ruft "Gibt es hier einen DHCP-Server?"</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span class="step-num step-num-green" style="min-width:24px;height:24px;font-size:11px;">O</span><strong>Offer:</strong> Server antwortet "Ich biete dir 192.168.20.105 an"</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span class="step-num step-num-blue" style="min-width:24px;height:24px;font-size:11px;">R</span><strong>Request:</strong> Gerät sagt "Ja, ich nehme 192.168.20.105"</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px;"><span class="step-num step-num-green" style="min-width:24px;height:24px;font-size:11px;">A</span><strong>Acknowledge:</strong> Server bestätigt "OK, sie gehört dir für 24h"</div>
+    </div>
+  </div>
+  <div class="card card-blue" style="margin-top:12px;">
+    <div class="label">Konfiguration in unserem Projekt (dnsmasq)</div>
+    <pre style="font-family:var(--mono);font-size:12px;color:var(--blue-tx);line-height:1.7;">dhcp-range=192.168.20.100,192.168.20.200,24h
+dhcp-option=3,192.168.20.1
+dhcp-option=6,192.168.20.2</pre>
+  </div>
+</div>
+
+<!-- DNS -->
+<div id="page-dns" class="page">
+  <div class="page-title">DNS</div>
+  <div class="page-subtitle">Domain Name System</div>
+  <div class="analogy">Telefonbuch des Internets: du schlägst "google.com" nach und bekommst die Telefonnummer (IP-Adresse) zurück.</div>
+  <p>DNS übersetzt <strong>lesbare Hostnamen</strong> in IP-Adressen. Ohne DNS müsstest du dir alle IP-Adressen merken statt einfacher Namen.</p>
+  <div class="card card-teal">
+    <div class="label">Wie eine DNS-Anfrage funktioniert</div>
+    <div class="flow">
+      <div class="flow-box">Browser: "webserver.local"</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="background:var(--teal-bg);border-color:var(--teal-bd);color:var(--teal-tx);">DNS-Server (Pi)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">"192.168.30.5"</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Browser verbindet sich</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Interne DNS-Einträge für unser Projekt</div>
+    <table><thead><tr><th>Hostname</th><th>IP-Adresse</th><th>Dienst</th></tr></thead>
+    <tbody>
+      <tr><td><code>router.local</code></td><td><code>192.168.10.1</code></td><td>Router</td></tr>
+      <tr><td><code>pi.local</code></td><td><code>192.168.10.2</code></td><td>Raspberry Pi</td></tr>
+      <tr><td><code>webserver.local</code></td><td><code>192.168.30.5</code></td><td>Apache/Nginx</td></tr>
+      <tr><td><code>wiki.local</code></td><td><code>192.168.30.6</code></td><td>DokuWiki</td></tr>
+      <tr><td><code>ldap.local</code></td><td><code>192.168.30.7</code></td><td>OpenLDAP</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- WEBSERVER -->
+<div id="page-webserver" class="page">
+  <div class="page-title">Webserver</div>
+  <div class="page-subtitle">HTTP-Server (Apache / Nginx)</div>
+  <div class="analogy">Bibliothekarin: du fragst nach einem Buch (URL), sie reicht es dir (HTML-Seite).</div>
+  <p>Ein Webserver empfängt HTTP/HTTPS-Anfragen von Browsern und liefert Webseiten, Bilder und Daten zurück. Er "hört" standardmäßig auf Port 80 (HTTP) und 443 (HTTPS).</p>
+  <div class="card card-teal">
+    <div class="label">Ablauf einer Webseiten-Anfrage</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;margin-top:4px;">
+      <div class="step-row"><div class="step-num step-num-blue">1</div><div>Du tippst <code>http://webserver.local</code> im Browser</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">2</div><div>Browser fragt DNS: "Was ist die IP von webserver.local?"</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">3</div><div>DNS antwortet: "192.168.30.5"</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">4</div><div>Browser sendet HTTP GET-Anfrage an 192.168.30.5:80</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">5</div><div>Apache/Nginx liefert die HTML-Seite zurück</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">6</div><div>Browser zeigt die Seite an</div></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Apache vs. Nginx – welcher für unser Projekt?</div>
+    <table><thead><tr><th></th><th>Apache</th><th>Nginx</th></tr></thead>
+    <tbody>
+      <tr><td>Stärke</td><td>.htaccess, flexibel</td><td>Sehr schnell, wenig RAM</td></tr>
+      <tr><td>RAM-Verbrauch</td><td>Mittel</td><td>Gering – ideal für Pi</td></tr>
+      <tr><td>Konfiguration</td><td>Komplexer</td><td>Einfacher</td></tr>
+      <tr><td>Empfehlung</td><td>Bei PHP-Anwendungen</td><td>Für Raspberry Pi</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- WIKI -->
+<div id="page-wiki" class="page">
+  <div class="page-title">Wiki-Server</div>
+  <div class="page-subtitle">Internes Wissensmanagementsystem</div>
+  <div class="analogy">Firmeninternes Wikipedia: Wissen für alle Teammitglieder zugänglich und gemeinsam bearbeitbar.</div>
+  <p>Ein Wiki-Server ist eine Webanwendung, mit der ein Team gemeinsam Dokumentationen schreiben und verwalten kann. In unserem Projekt ideal für Konfigurationsanleitungen und Troubleshooting-Notizen.</p>
+  <div class="card card-green">
+    <div class="label">Beliebte Wiki-Software</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px;">
+      <div class="card" style="margin:0;">
+        <strong>DokuWiki</strong> – <span class="tag tag-green">Empfohlen für Pi</span><br>
+        <span style="font-size:12px;color:var(--text2);">Kein Datenbank-Server nötig. Speichert alles als Textdateien. Sehr leicht, läuft problemlos auf dem Raspberry Pi.</span>
+      </div>
+      <div class="card" style="margin:0;">
+        <strong>MediaWiki</strong> – wie Wikipedia<br>
+        <span style="font-size:12px;color:var(--text2);">Braucht MySQL/MariaDB. Mächtig, aber schwerer. Für große Teams geeignet.</span>
+      </div>
+      <div class="card" style="margin:0;">
+        <strong>BookStack</strong> – modern &amp; übersichtlich<br>
+        <span style="font-size:12px;color:var(--text2);">Modernes Design, Bucherstruktur. Braucht PHP + MySQL.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LDAP -->
+<div id="page-ldap" class="page">
+  <div class="page-title">LDAP</div>
+  <div class="page-subtitle">Lightweight Directory Access Protocol</div>
+  <div class="analogy">Zentraler Hausschlüsseldienst: ein einziger Schlüssel öffnet alle Türen im Gebäude – ein Login für alle Dienste.</div>
+  <p>LDAP ist ein Protokoll zur <strong>zentralen Benutzerverwaltung</strong>. Alle Dienste (Wiki, Webserver, etc.) fragen den LDAP-Server, ob ein Benutzer sich einloggen darf.</p>
+  <div class="card card-purple">
+    <div class="label">Mit und ohne LDAP</div>
+    <div class="grid2" style="margin-top:6px;">
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--red-tx);margin-bottom:6px;">Ohne LDAP</div>
+        <div style="font-size:12px;color:var(--text2);">Jeder Dienst hat eigene Benutzerdatenbank. Anderes Passwort für Wiki, Webserver, Server-Login... unübersichtlich.</div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--green-tx);margin-bottom:6px;">Mit LDAP</div>
+        <div style="font-size:12px;color:var(--text2);">Ein zentrales Passwort für alle Dienste. Benutzer einmal anlegen – überall nutzbar. Zugriffsrechte zentral steuern.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Software: OpenLDAP auf dem Raspberry Pi</div>
+    <p style="font-size:13px;margin:0;">OpenLDAP ist die verbreiteste Open-Source-Implementierung von LDAP. Installation: <code>sudo apt install slapd ldap-utils</code></p>
+  </div>
+</div>
+
+<!-- OPENWRT -->
+<div id="page-openwrt" class="page">
+  <div class="page-title">OpenWRT</div>
+  <div class="page-subtitle">Open-Source Router-Betriebssystem</div>
+  <div class="analogy">Tuning am Auto: die serienmäßige Firmware durch ein leistungsfähiges, vollständig konfigurierbares System ersetzen.</div>
+  <p>OpenWRT ist ein <strong>Linux-basiertes Betriebssystem für Router</strong>. Es ersetzt die eingeschränkte Standard-Firmware und gibt dir vollständige Kontrolle über dein Netzwerk.</p>
+  <div class="card card-teal">
+    <div class="label">Was OpenWRT kann (und Standard-Firmware nicht)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;font-size:13px;">
+      <div>✓ VLAN-Konfiguration</div>
+      <div>✓ Firewall-Regeln (iptables)</div>
+      <div>✓ VPN-Server (WireGuard)</div>
+      <div>✓ QoS (Bandbreite priorisieren)</div>
+      <div>✓ DHCP &amp; DNS (dnsmasq)</div>
+      <div>✓ Paketmanager (opkg)</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Installation auf Raspberry Pi</div>
+    <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;margin-top:4px;">
+      <div class="step-row"><div class="step-num step-num-blue">1</div><div>OpenWRT-Image für Raspberry Pi herunterladen (openwrt.org)</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">2</div><div>Image auf SD-Karte flashen (z.B. mit Raspberry Pi Imager)</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">3</div><div>Pi starten, per Browser auf 192.168.1.1 zugreifen (LuCI-Interface)</div></div>
+      <div class="step-row"><div class="step-num step-num-blue">4</div><div>VLANs, Firewall, DHCP konfigurieren</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FIREWALL -->
+<div id="page-firewall" class="page">
+  <div class="page-title">Firewall</div>
+  <div class="page-subtitle">Netzwerk-Schutzwall</div>
+  <div class="analogy">Sicherheitsmann am Eingang mit einer Liste: wer drauf steht, kommt rein – alle anderen werden gestoppt.</div>
+  <p>Eine Firewall <strong>überwacht und filtert</strong> den Netzwerkverkehr nach vordefinierten Regeln. Sie entscheidet: erlaubt oder blockiert?</p>
+  <div class="card" style="margin-bottom:12px;">
+    <div class="label">Beispiel-Regeln für unser Projekt (iptables)</div>
+    <div class="rule-row rule-allow"><div class="rule-dot dot-green"></div><span>SSH (Port 22) aus VLAN 10 → <strong>ERLAUBT</strong></span></div>
+    <div class="rule-row rule-allow"><div class="rule-dot dot-green"></div><span>HTTP (Port 80) von überall → <strong>ERLAUBT</strong></span></div>
+    <div class="rule-row rule-allow"><div class="rule-dot dot-green"></div><span>HTTPS (Port 443) von überall → <strong>ERLAUBT</strong></span></div>
+    <div class="rule-row rule-deny"><div class="rule-dot dot-red"></div><span>SSH aus VLAN 20 oder 30 → <strong>BLOCKIERT</strong></span></div>
+    <div class="rule-row rule-deny"><div class="rule-dot dot-red"></div><span>Direkte VLAN20↔VLAN30-Kommunikation → <strong>BLOCKIERT</strong></span></div>
+    <div class="rule-row rule-deny"><div class="rule-dot dot-red"></div><span>Alles andere → <strong>DROP</strong></span></div>
+  </div>
+  <div class="card card-red">
+    <div class="label">Software vs. Hardware Firewall</div>
+    <div class="grid2" style="margin-top:6px;">
+      <div><strong>Software-Firewall</strong><br><span style="font-size:12px;color:var(--text2);">Läuft als Programm auf dem Raspberry Pi (iptables/nftables). Günstig, flexibel.</span></div>
+      <div><strong>Hardware-Firewall</strong><br><span style="font-size:12px;color:var(--text2);">Eigenes Gerät zwischen Router und Netz (z.B. pfSense). Leistungsfähiger für große Netze.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAT -->
+<div id="page-nat" class="page">
+  <div class="page-title">NAT</div>
+  <div class="page-subtitle">Network Address Translation</div>
+  <div class="analogy">Eine Firmenzentrale mit einer einzigen Postadresse nach außen – intern gibt es viele Abteilungen mit eigenen Nummern.</div>
+  <p>NAT übersetzt <strong>private IP-Adressen</strong> (intern) in eine öffentliche IP-Adresse (extern) – und zurück. So können viele Geräte mit einer einzigen öffentlichen IP ins Internet.</p>
+  <div class="card card-amber">
+    <div class="label">NAT in Aktion</div>
+    <div class="flow">
+      <div class="flow-box" style="background:var(--blue-bg);border-color:var(--blue-bd);color:var(--blue-tx);">PC<br><small>192.168.10.5</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber-tx);">Router<br><small>NAT-Übersetzung</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="background:var(--green-bg);border-color:var(--green-bd);color:var(--green-tx);">Internet<br><small>85.214.x.x</small></div>
+    </div>
+    <p style="font-size:12px;color:var(--text2);margin-top:8px;margin-bottom:0;">Der Router merkt sich: "Paket von 192.168.10.5 geht nach draußen als 85.214.x.x". Kommt die Antwort zurück, leitet er sie an .5 weiter.</p>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Warum brauchen wir NAT?</div>
+    <p style="font-size:13px;margin:0;">Es gibt weltweit nur ca. 4,3 Milliarden IPv4-Adressen – zu wenig für alle Geräte. Private IP-Ranges (192.168.x.x, 10.x.x.x) werden millionenfach wiederverwendet. NAT macht das möglich, weil nach außen nur eine öffentliche IP sichtbar ist.</p>
+  </div>
+</div>
+
+<!-- VPN -->
+<div id="page-vpn" class="page">
+  <div class="page-title">VPN</div>
+  <div class="page-subtitle">Virtual Private Network</div>
+  <div class="analogy">Ein sicherer, privater Tunnel durch die öffentliche Strasse: von außen sieht man den Tunnel, aber nicht was darin transportiert wird.</div>
+  <p>Ein VPN erstellt eine <strong>verschlüsselte Verbindung</strong> durch ein öffentliches Netzwerk. So kann man sicher auf ein privates Netzwerk zugreifen – auch von unterwegs.</p>
+  <div class="card card-purple">
+    <div class="label">VPN-Verbindungsaufbau</div>
+    <div class="flow">
+      <div class="flow-box">Laptop zuhause</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="background:var(--purple-bg);border-color:var(--purple-bd);color:var(--purple-tx);">Verschlüsselter Tunnel</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">VPN-Server (Pi)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Schulnetzwerk</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">VPN-Software Vergleich</div>
+    <table><thead><tr><th>Software</th><th>Geschwindigkeit</th><th>Einrichtung</th><th>Empfehlung</th></tr></thead>
+    <tbody>
+      <tr><td>WireGuard</td><td>Sehr schnell</td><td>Einfach</td><td style="color:var(--green-tx);">Empfohlen für Pi</td></tr>
+      <tr><td>OpenVPN</td><td>Gut</td><td>Komplex</td><td>Bewährt, weit verbreitet</td></tr>
+      <tr><td>IPsec</td><td>Schnell</td><td>Sehr komplex</td><td>Für Profis</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<!-- DMZ -->
+<div id="page-dmz" class="page">
+  <div class="page-title">DMZ</div>
+  <div class="page-subtitle">Demilitarisierte Zone</div>
+  <div class="analogy">Eingangsbereich (Foyer): Besucher kommen ins Foyer, aber nicht tiefer ins Gebäude. Ein Einbruch ins Foyer gefährdet nicht den Rest.</div>
+  <p>Die DMZ ist ein <strong>separiertes Netzwerksegment</strong> zwischen dem Internet und dem internen Netz. Öffentlich erreichbare Dienste (z.B. Webserver) stehen hier.</p>
+  <div class="card card-red">
+    <div class="label">Netzwerkstruktur mit DMZ</div>
+    <div class="flow" style="flex-direction:column;align-items:flex-start;gap:6px;font-size:13px;">
+      <div style="display:flex;align-items:center;gap:10px;"><div class="flow-box">Internet</div><span style="color:var(--text3);">→ darf in die DMZ</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding-left:20px;"><div class="flow-box" style="background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber-tx);">Firewall 1</div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding-left:40px;"><div class="flow-box" style="background:var(--red-bg);border-color:var(--red-bd);color:var(--red-tx);">DMZ (Webserver)</div><span style="color:var(--text3);">← Internet-Zugriff erlaubt</span></div>
+      <div style="display:flex;align-items:center;gap:10px;padding-left:20px;"><div class="flow-box" style="background:var(--amber-bg);border-color:var(--amber-bd);color:var(--amber-tx);">Firewall 2</div></div>
+      <div style="display:flex;align-items:center;gap:10px;padding-left:40px;"><div class="flow-box" style="background:var(--green-bg);border-color:var(--green-bd);color:var(--green-tx);">Internes LAN</div><span style="color:var(--text3);">← kein direkter Internet-Zugriff</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;">
+    <div class="label">Vorteil der DMZ</div>
+    <p style="font-size:13px;margin:0;">Wird der Webserver in der DMZ kompromittiert (gehackt), hat der Angreifer <strong>keinen direkten Zugang</strong> zum internen Netz mit sensiblen Daten. Die zweite Firewall schützt das interne LAN.</p>
+  </div>
+</div>
+
+<!-- SUBNETZRECHNER -->
+<div id="page-subnetzrechner" class="page">
+  <div class="page-title">Subnetzrechner</div>
+  <div class="page-subtitle">IPv4-Subnet Calculator – Python-Tool</div>
+  <div class="analogy">Taschenrechner für Netzwerke: du gibst IP und Maske ein, er berechnet alles automatisch.</div>
+  <p>Wir programmieren ein Python-Tool, das aus IP-Adresse und Subnetzmaske alle wichtigen Netzwerkinfos berechnet. <strong>Jedes Teammitglied muss den Code erklären können!</strong></p>
+  <div class="card card-purple" style="margin-bottom:12px;">
+    <div class="label">Interaktiver Rechner</div>
+    <div class="form-row" style="margin-top:8px;">
+      <div class="form-group"><span class="form-label">IP-Adresse</span><input type="text" id="r-ip" value="192.168.20.50" oninput="calcR()" style="font-family:var(--mono);width:160px;"/></div>
+      <div class="form-group"><span class="form-label">CIDR</span><select id="r-cidr" onchange="calcR()"><option value="24">/24</option><option value="25">/25</option><option value="26">/26</option><option value="27">/27</option><option value="28">/28</option><option value="30">/30</option></select></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;" id="r-cards"></div>
+  </div>
+  <div class="card">
+    <div class="label">Python-Struktur (Pflichtanforderungen)</div>
+    <pre style="font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.8;background:var(--surface2);padding:12px;border-radius:var(--rad);overflow-x:auto;">import ipaddress
+
+def berechne_subnetz(ip_eingabe, maske):
+    <span style="color:var(--green-tx);"># Netzwerk-Objekt erstellen</span>
+    netz = ipaddress.IPv4Network(
+        f'{ip_eingabe}/{maske}', strict=False
+    )
+    <span style="color:var(--green-tx);"># Werte berechnen</span>
+    netz_id   = netz.network_address
+    broadcast = netz.broadcast_address
+    hosts     = netz.num_addresses - 2
+    maske_str = netz.netmask
+    return netz_id, broadcast, hosts, maske_str</pre>
+  </div>
+  <div class="card card-amber" style="margin-top:12px;">
+    <div class="label">Checkliste – Anforderungen erfüllt?</div>
+    <div style="display:flex;flex-direction:column;gap:5px;margin-top:6px;font-size:13px;">
+      <div>☐ IP-Adresse und Subnetzmaske einlesbar</div>
+      <div>☐ Netz-ID korrekt berechnet</div>
+      <div>☐ Anzahl nutzbarer Hosts berechnet</div>
+      <div>☐ Asymmetrische Subnetze (/25, /26 ...) unterstützt</div>
+      <div>☐ Sinnvolle Variablennamen (nicht a, b, c)</div>
+      <div>☐ Code kommentiert</div>
+      <div>☐ Jedes Mitglied kann den Code erklären</div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+const TERMS = [
+  {id:'ip',title:'IP-Adresse',sub:'Eindeutige Geräteadresse',badge:'Adressierung',col:'blue'},
+  {id:'subnet',title:'Subnetzmaske',sub:'Grösse des Netzwerks',badge:'Adressierung',col:'blue'},
+  {id:'lanwan',title:'LAN & WAN',sub:'Lokal vs. Internet',badge:'Netztypen',col:'teal'},
+  {id:'vlan',title:'VLAN',sub:'Virtuelle Trennung',badge:'Netztypen',col:'purple'},
+  {id:'router',title:'Router',sub:'Netzwerk-Wegewahl',badge:'Geräte',col:'amber'},
+  {id:'switch',title:'Switch',sub:'Gezielter Verteiler',badge:'Geräte',col:'amber'},
+  {id:'wlan',title:'WLAN & AP',sub:'Kabelloses Netzwerk',badge:'Geräte',col:'amber'},
+  {id:'rpi',title:'Raspberry Pi',sub:'Unser Server-Allrounder',badge:'Geräte',col:'red'},
+  {id:'dhcp',title:'DHCP',sub:'Automatische IPs',badge:'Dienste',col:'green'},
+  {id:'dns',title:'DNS',sub:'Telefonbuch des Internets',badge:'Dienste',col:'teal'},
+  {id:'webserver',title:'Webserver',sub:'HTTP-Server',badge:'Dienste',col:'teal'},
+  {id:'wiki',title:'Wiki-Server',sub:'Interne Dokumentation',badge:'Dienste',col:'green'},
+  {id:'ldap',title:'LDAP',sub:'Zentrale Benutzerverwaltung',badge:'Dienste',col:'purple'},
+  {id:'openwrt',title:'OpenWRT',sub:'Router-Betriebssystem',badge:'Dienste',col:'teal'},
+  {id:'firewall',title:'Firewall',sub:'Netzwerk-Schutzwall',badge:'Sicherheit',col:'red'},
+  {id:'nat',title:'NAT',sub:'Adress-Übersetzung',badge:'Sicherheit',col:'amber'},
+  {id:'vpn',title:'VPN',sub:'Verschlüsselter Tunnel',badge:'Sicherheit',col:'purple'},
+  {id:'dmz',title:'DMZ',sub:'Sichere Eingangszone',badge:'Sicherheit',col:'red'},
+  {id:'subnetzrechner',title:'Subnetzrechner',sub:'Python-Tool',badge:'Programmierung',col:'purple'},
+];
+
+const grid = document.getElementById('home-grid');
+TERMS.forEach(t=>{
+  const d=document.createElement('div');
+  d.className='home-card';
+  d.innerHTML=`<div class="hc-badge tag-${t.col}" style="background:var(--${t.col}-bg);color:var(--${t.col}-tx);">${t.badge}</div><div class="hc-title">${t.title}</div><div class="hc-sub">${t.sub}</div>`;
+  d.onclick=()=>show(t.id);
+  grid.appendChild(d);
+});
+
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+id+"'")){n.classList.add('active');}
+  });
+  document.getElementById('main').scrollTop=0;
+  if(id==='subnet')calcSub();
+  if(id==='subnetzrechner')calcR();
+}
+
+function doCalc(cidrId, ipId, cardsId){
+  const cidr=parseInt(document.getElementById(cidrId).value);
+  const ipStr=document.getElementById(ipId).value.trim();
+  const hostBits=32-cidr;
+  const total=Math.pow(2,hostBits);
+  const usable=Math.max(0,total-2);
+  const parts=ipStr.split('.').map(Number);
+  let net=[0,0,0,0];
+  if(parts.length===4&&parts.every(p=>!isNaN(p)&&p>=0&&p<=255)){
+    const mask=~((1<<hostBits)-1)>>>0;
+    const ip32=((parts[0]<<24)|(parts[1]<<16)|(parts[2]<<8)|parts[3])>>>0;
+    const n32=(ip32&mask)>>>0;
+    net=[(n32>>>24)&255,(n32>>>16)&255,(n32>>>8)&255,n32&255];
+  }
+  const bc=[...net];
+  let c=net[3]+(total-1);
+  bc[3]=c%256;if(c>255)bc[2]=net[2]+Math.floor(c/256);
+  const mp=[];let m=(~((1<<hostBits)-1))>>>0;
+  for(let i=3;i>=0;i--){mp.unshift(m&255);m>>>=8;}
+  document.getElementById(cardsId).innerHTML=[
+    ['Subnetzmaske',mp.join('.'),'blue'],
+    ['Netz-ID',net.join('.'),'blue'],
+    ['Broadcast',bc.join('.'),'amber'],
+    ['Nutzbare Geräte',usable,'green'],
+  ].map(([l,v,c])=>`<div class="metric"><div class="metric-label">${l}</div><div class="metric-val ${c}">${v}</div></div>`).join('');
+}
+function calcSub(){doCalc('s-cidr','s-ip','s-cards');}
+function calcR(){doCalc('r-cidr','r-ip','r-cards');}
+
+/* ── CHAT ── */
+const SYS = `Du bist ein hilfreicher IT-Tutor fuer Schueler, die gerade ein Netzwerkprojekt (Szenario X) durchfuehren. Das Projekt beinhaltet: Router mit OpenWRT auf Raspberry Pi, 3 VLANs (10=Management, 20=Clients, 30=Server), DHCP, DNS, Webserver, Firewall (iptables), Wiki-Server, LDAP-Server, DMZ, WLAN/AccessPoint, und einen IPv4-Subnetzrechner in Python.
+
+Erklaere Konzepte immer klar und einfach, mit Analogien aus dem Alltag wenn moeglich. Halte Antworten praegnant (max. 4-5 Saetze ausser bei komplexen Themen). Antworte auf Deutsch. Wenn du Code zeigst, benutze einfaches Markdown.`;
+
+let chatHistory = [];
+let chatOpen = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-panel').style.transform = chatOpen ? 'translateX(0)' : 'translateX(100%)';
+  document.getElementById('chat-fab').innerHTML = chatOpen
+    ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+    : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>';
+  if (chatOpen) setTimeout(() => document.getElementById('chat-input').focus(), 300);
+}
+
+function saveKey() {
+  const k = document.getElementById('api-key-input').value.trim();
+  if (k) { localStorage.setItem('groq_key', k); showChat(); }
+}
+
+function showChat() {
+  document.getElementById('key-screen').style.display = 'none';
+  document.getElementById('chat-screen').style.display = 'flex';
+  if (!chatHistory.length) addBubble('bot', 'Hallo! Ich bin dein IT-Assistent für Szenario X. Frag mich alles über VLANs, IP-Adressen, Firewall, DHCP, DNS oder den Subnetzrechner. Was möchtest du wissen?');
+}
+
+function addBubble(role, text) {
+  const msgs = document.getElementById('chat-msgs');
+  const d = document.createElement('div');
+  d.className = 'chat-bubble ' + (role === 'user' ? 'bubble-user' : 'bubble-bot');
+  d.innerHTML = mdToHtml(text);
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+function mdToHtml(t) {
+  return t
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/```[\w]*\n?([\s\S]*?)```/g,'<pre>$1</pre>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^### (.+)$/gm,'<strong>$1</strong>')
+    .replace(/^## (.+)$/gm,'<strong>$1</strong>')
+    .replace(/\n/g,'<br>');
+}
+
+async function sendMsg() {
+  const inp = document.getElementById('chat-input');
+  const msg = inp.value.trim();
+  if (!msg) return;
+  const key = localStorage.getItem('groq_key');
+  if (!key) { showKeyScreen(); return; }
+
+  inp.value = '';
+  inp.style.height = 'auto';
+  addBubble('user', msg);
+  chatHistory.push({ role: 'user', content: msg });
+
+  const thinking = addBubble('bot', '...');
+  document.getElementById('send-btn').disabled = true;
+
+  try {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'system', content: SYS }, ...chatHistory],
+        max_tokens: 600,
+        stream: true
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      thinking.innerHTML = '<span style="color:var(--red-tx);">Fehler: ' + (err.error?.message || res.statusText) + '</span>';
+      document.getElementById('send-btn').disabled = false;
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let full = '';
+    thinking.innerHTML = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = dec.decode(value);
+      for (const line of chunk.split('\n')) {
+        const l = line.replace(/^data: /, '').trim();
+        if (!l || l === '[DONE]') continue;
+        try {
+          const delta = JSON.parse(l).choices?.[0]?.delta?.content;
+          if (delta) { full += delta; thinking.innerHTML = mdToHtml(full); }
+        } catch {}
+      }
+      document.getElementById('chat-msgs').scrollTop = document.getElementById('chat-msgs').scrollHeight;
+    }
+
+    chatHistory.push({ role: 'assistant', content: full });
+    if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+  } catch (e) {
+    thinking.innerHTML = '<span style="color:var(--red-tx);">Netzwerkfehler: ' + e.message + '</span>';
+  }
+  document.getElementById('send-btn').disabled = false;
+}
+
+function showKeyScreen() {
+  document.getElementById('key-screen').style.display = 'flex';
+  document.getElementById('chat-screen').style.display = 'none';
+}
+
+function clearKey() {
+  localStorage.removeItem('groq_key');
+  chatHistory = [];
+  document.getElementById('chat-msgs').innerHTML = '';
+  showKeyScreen();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('groq_key')) showChat();
+  const inp = document.getElementById('chat-input');
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+  });
+  inp.addEventListener('input', () => {
+    inp.style.height = 'auto';
+    inp.style.height = Math.min(inp.scrollHeight, 120) + 'px';
+  });
+  document.getElementById('api-key-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') saveKey();
+  });
+});
+</script>
+
+<!-- CHAT FAB -->
+<button id="chat-fab" onclick="toggleChat()" title="KI-Assistent öffnen" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:#378add;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1000;box-shadow:0 2px 12px rgba(55,138,221,0.4);">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+</button>
+
+<!-- CHAT PANEL -->
+<div id="chat-panel" style="position:fixed;top:0;right:0;width:360px;max-width:100vw;height:100vh;background:var(--bg);border-left:0.5px solid var(--border2);display:flex;flex-direction:column;z-index:999;transform:translateX(100%);transition:transform 0.25s ease;">
+
+  <!-- Header -->
+  <div style="padding:14px 16px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+    <div>
+      <div style="font-size:14px;font-weight:500;color:var(--text);">KI-Assistent</div>
+      <div style="font-size:11px;color:var(--text3);">Powered by Groq · llama-3.3-70b</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button onclick="clearKey()" title="API-Key löschen" style="background:none;border:none;cursor:pointer;color:var(--text3);font-size:11px;padding:4px 8px;border-radius:var(--rad);border:0.5px solid var(--border);">Key ändern</button>
+      <button onclick="toggleChat()" style="background:none;border:none;cursor:pointer;color:var(--text2);padding:4px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Key Screen -->
+  <div id="key-screen" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:16px;">
+    <div style="width:48px;height:48px;border-radius:50%;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#378add" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px;">Groq API-Key eingeben</div>
+      <div style="font-size:12px;color:var(--text3);line-height:1.6;">Kostenloser Account auf <strong style="color:var(--blue-tx);">console.groq.com</strong><br>→ API Keys → Create API Key</div>
+    </div>
+    <div style="width:100%;display:flex;flex-direction:column;gap:8px;">
+      <input id="api-key-input" type="password" placeholder="gsk_..." style="width:100%;font-family:var(--mono);font-size:13px;padding:9px 12px;border-radius:var(--rad);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);" />
+      <button onclick="saveKey()" style="width:100%;padding:9px;border-radius:var(--rad);border:none;background:#378add;color:#fff;font-size:14px;cursor:pointer;font-weight:500;">Verbinden</button>
+    </div>
+    <div style="font-size:11px;color:var(--text3);text-align:center;">Der Key wird nur lokal in deinem Browser gespeichert.</div>
+  </div>
+
+  <!-- Chat Screen -->
+  <div id="chat-screen" style="flex:1;display:none;flex-direction:column;min-height:0;">
+    <div id="chat-msgs" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;"></div>
+
+    <!-- Suggestion chips -->
+    <div style="padding:8px 16px;display:flex;gap:6px;flex-wrap:wrap;border-top:0.5px solid var(--border);">
+      <button class="chip" onclick="askSug(this)" style="padding:4px 10px;border-radius:99px;border:0.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:11px;cursor:pointer;">Was ist ein VLAN?</button>
+      <button class="chip" onclick="askSug(this)" style="padding:4px 10px;border-radius:99px;border:0.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:11px;cursor:pointer;">Wie funktioniert DHCP?</button>
+      <button class="chip" onclick="askSug(this)" style="padding:4px 10px;border-radius:99px;border:0.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:11px;cursor:pointer;">Was ist /24?</button>
+      <button class="chip" onclick="askSug(this)" style="padding:4px 10px;border-radius:99px;border:0.5px solid var(--border2);background:var(--surface);color:var(--text2);font-size:11px;cursor:pointer;">iptables Beispiel</button>
+    </div>
+
+    <!-- Input -->
+    <div style="padding:12px;border-top:0.5px solid var(--border);display:flex;gap:8px;align-items:flex-end;">
+      <textarea id="chat-input" placeholder="Frage stellen... (Enter zum Senden)" rows="1" style="flex:1;resize:none;border-radius:var(--rad);border:0.5px solid var(--border2);background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;padding:8px 10px;line-height:1.5;max-height:120px;overflow-y:auto;"></textarea>
+      <button id="send-btn" onclick="sendMsg()" style="width:36px;height:36px;border-radius:var(--rad);border:none;background:#378add;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+.chat-bubble{padding:10px 13px;border-radius:var(--radlg);font-size:13px;line-height:1.6;max-width:94%;word-break:break-word;}
+.bubble-user{background:var(--blue-bg);color:var(--blue-tx);border:0.5px solid var(--blue-bd);align-self:flex-end;border-bottom-right-radius:4px;}
+.bubble-bot{background:var(--surface);color:var(--text);border:0.5px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px;}
+.bubble-bot pre{background:var(--surface2);padding:8px 10px;border-radius:var(--rad);font-family:var(--mono);font-size:11.5px;overflow-x:auto;margin:6px 0;white-space:pre-wrap;}
+.bubble-bot code{font-family:var(--mono);font-size:0.88em;background:var(--surface2);padding:1px 4px;border-radius:3px;}
+.chip:hover{background:var(--surface2)!important;color:var(--text)!important;}
+</style>
+
+<script>
+function askSug(btn) {
+  document.getElementById('chat-input').value = btn.textContent;
+  sendMsg();
+}
+<!-- Chat Toggle Button -->
+<button id="chat-toggle" onclick="toggleChat()" title="KI-Assistent öffnen">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+</button>
+
+<!-- Chat Panel -->
+<div id="chat-panel" class="hidden">
+  <div id="chat-header">
+    <div style="width:32px;height:32px;border-radius:50%;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--blue-tx)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+    </div>
+    <div id="chat-header-text">
+      <div id="chat-header-title">KI-Assistent</div>
+      <div id="chat-header-sub">Frag zu einem Fachbegriff</div>
+    </div>
+    <button id="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div id="chat-key-area" style="display:none;">
+    <p>Groq API-Key eingeben (kostenlos auf console.groq.com):</p>
+    <div id="chat-key-row">
+      <input type="password" id="chat-key-input" placeholder="gsk_..." />
+      <button id="chat-key-btn" onclick="saveKey()">Speichern</button>
+    </div>
+  </div>
+
+  <div id="chat-key-saved" style="display:none;">
+    <span>API-Key gespeichert</span>
+    <button onclick="resetKey()">Ändern</button>
+  </div>
+
+  <div id="chat-context-bar" style="display:flex;align-items:center;gap:8px;"><span style="width:7px;height:7px;border-radius:50%;background:var(--purple-bd);flex-shrink:0;" id="ctx-dot"></span>Kontext: <strong id="chat-context-label">Startseite</strong><span id="ctx-hint" style="margin-left:auto;font-size:10px;opacity:0.7;">Seiteninhalt gelesen</span></div>
+
+  <div id="chat-messages">
+    <div class="chat-msg system">Hallo! Ich erkläre dir alle Netzwerk-Fachbegriffe. Was möchtest du wissen?</div>
+  </div>
+
+  <div id="chat-input-area">
+    <textarea id="chat-input" rows="1" placeholder="Frage stellen..." onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button id="chat-send" onclick="sendMsg()">Senden</button>
+  </div>
+</div>
+
+<script>
+let chatOpen = false;
+let apiKey = localStorage.getItem('groq_key') || '';
+let currentTopic = 'Allgemein';
+let chatHistory = [];
+let isTyping = false;
+
+const SYSTEM_BASE = `Du bist ein hilfreicher IT-Lehrer und erklärst Netzwerk-Fachbegriffe für Schüler, die ein Schulprojekt (Szenario X) umsetzen. Das Projekt umfasst: Router mit OpenWRT auf Raspberry Pi, 3 VLANs (10=Management, 20=Clients, 30=Server), DHCP, DNS, Webserver, Firewall, Wiki-Server, LDAP und einen IPv4-Subnetzrechner in Python.
+Erkläre immer einfach und verständlich, verwende Analogien aus dem Alltag. Antworte auf Deutsch. Halte Antworten kompakt (max. 200 Wörter). Wenn jemand etwas nicht versteht, erkläre es mit einem anderen Beispiel.`;
+
+function buildSystemPrompt() {
+  const activePage = document.querySelector('.page.active');
+  let pageText = '';
+  if (activePage && activePage.id !== 'page-home') {
+    // Clone so we can remove interactive elements without affecting the DOM
+    const clone = activePage.cloneNode(true);
+    // Remove elements that add noise: selects, inputs, pre-rendered calc cards
+    clone.querySelectorAll('select,input,#s-cards,#r-cards,#s-ip,#r-ip,#addr-bar,#vlan10-houses,#vlan20-houses,#vlan30-houses').forEach(el => el.remove());
+    const raw = (clone.innerText || clone.textContent || '').replace(/\n{3,}/g, '\n\n').trim();
+    const lines = raw.split('\n').map(l => l.trim()).filter(l => l.length > 5).slice(0, 80).join('\n');
+    if (lines.length > 20) {
+      pageText = `\n\n--- Inhalt der aktuell angezeigten Seite (${currentTopic}) ---\n${lines}\n--- Ende Seiteninhalt ---`;
+    }
+  }
+  return SYSTEM_BASE + `\n\nAktuell angeschautes Thema: ${currentTopic}` + pageText;
+}
+
+function toggleChat(){
+  chatOpen = !chatOpen;
+  const panel = document.getElementById('chat-panel');
+  panel.classList.toggle('hidden', !chatOpen);
+  if(chatOpen){
+    checkKey();
+    document.getElementById('chat-input').focus();
+  }
+}
+
+function checkKey(){
+  if(apiKey){
+    document.getElementById('chat-key-area').style.display = 'none';
+    document.getElementById('chat-key-saved').style.display = 'flex';
+  } else {
+    document.getElementById('chat-key-area').style.display = 'block';
+    document.getElementById('chat-key-saved').style.display = 'none';
+  }
+}
+
+function saveKey(){
+  const v = document.getElementById('chat-key-input').value.trim();
+  if(!v){ alert('Bitte einen API-Key eingeben.'); return; }
+  apiKey = v;
+  localStorage.setItem('groq_key', v);
+  checkKey();
+  addMsg('system', 'API-Key gespeichert. Du kannst jetzt Fragen stellen!');
+}
+
+function resetKey(){
+  apiKey = '';
+  localStorage.removeItem('groq_key');
+  document.getElementById('chat-key-input').value = '';
+  checkKey();
+}
+
+function addMsg(role, text){
+  const box = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = 'chat-msg ' + role;
+  d.textContent = text;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+  return d;
+}
+
+function showTyping(){
+  const box = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = 'chat-typing';
+  d.id = 'typing-indicator';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function hideTyping(){
+  const t = document.getElementById('typing-indicator');
+  if(t) t.remove();
+}
+
+async function sendMsg(){
+  if(isTyping) return;
+  if(!apiKey){
+    addMsg('system', 'Bitte zuerst einen Groq API-Key eingeben.');
+    return;
+  }
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if(!text) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+  addMsg('user', text);
+  chatHistory.push({ role: 'user', content: text });
+
+  isTyping = true;
+  document.getElementById('chat-send').disabled = true;
+  showTyping();
+
+  try {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: [
+          { role: 'system', content: buildSystemPrompt() },
+          ...chatHistory.slice(-8)
+        ],
+        max_tokens: 300,
+        temperature: 0.6
+      })
+    });
+
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      throw new Error(err.error?.message || 'HTTP ' + res.status);
+    }
+
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || 'Keine Antwort erhalten.';
+    hideTyping();
+    addMsg('ai', reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+
+  } catch(e){
+    hideTyping();
+    let msg = 'Fehler: ' + e.message;
+    if(e.message.includes('401')) msg = 'Ungültiger API-Key. Bitte prüfen.';
+    if(e.message.includes('429')) msg = 'Rate Limit erreicht. Kurz warten.';
+    if(e.message.includes('Failed to fetch')) msg = 'Netzwerkfehler. Internetverbindung prüfen.';
+    addMsg('system', msg);
+  } finally {
+    isTyping = false;
+    document.getElementById('chat-send').disabled = false;
+  }
+}
+
+function handleKey(e){
+  if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); sendMsg(); }
+}
+
+function autoResize(el){
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
+}
+
+// Update topic context when navigating
+const _origShow = show;
+function show(id){
+  _origShow(id);
+  const names = {
+    home:'Startseite',ip:'IP-Adresse',subnet:'Subnetzmaske',lanwan:'LAN & WAN',
+    vlan:'VLAN',router:'Router',switch:'Switch',wlan:'WLAN & Access Point',
+    rpi:'Raspberry Pi',dhcp:'DHCP',dns:'DNS',webserver:'Webserver',
+    wiki:'Wiki-Server',ldap:'LDAP',openwrt:'OpenWRT',firewall:'Firewall',
+    nat:'NAT',vpn:'VPN',dmz:'DMZ',subnetzrechner:'Subnetzrechner'
+  };
+  currentTopic = names[id] || id;
+  document.getElementById('chat-context-label').textContent = currentTopic;
+  document.getElementById('chat-header-sub').textContent = 'Thema: ' + currentTopic;
+  const dot = document.getElementById('ctx-dot');
+  const hint = document.getElementById('ctx-hint');
+  if(dot){ dot.style.background = id === 'home' ? 'var(--text3)' : 'var(--purple-bd)'; }
+  if(hint){ hint.textContent = id === 'home' ? 'Kein Seitenkontext' : 'Seiteninhalt gelesen'; }
+}
+</script>
+</body>
+</html>
